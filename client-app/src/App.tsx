@@ -21,7 +21,10 @@ function App() {
       <List>
         {activities.map((activity: any) => (
           <List.Item key={activity.id}>
-            {activity.title}
+            <br></br>
+            {activity.title} <br></br>
+            Cidade: {activity.city} <br></br>
+            Lugar: {activity.venue}
           </List.Item>
         ))}
       </List>
