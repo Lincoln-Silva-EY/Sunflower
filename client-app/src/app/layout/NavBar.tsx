@@ -10,7 +10,7 @@ export default function NavBar({openForm}: Props) {
         <Menu inverted fixed='top'>
             <Container>
                 <Menu.Item header style={{marginLeft: '-6vw'}}>
-                    <img src='/assets/logo.png' alt="logo" style={{marginRight: '1vw'}}/>
+                    <img src='/assets/icon.png' alt="logo" style={{marginRight: '1vw'}}/>
                     Sunflower
                 </Menu.Item>
                 <Menu.Item name='Activities' />
