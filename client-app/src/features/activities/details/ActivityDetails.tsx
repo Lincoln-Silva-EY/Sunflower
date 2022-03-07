@@ -18,7 +18,8 @@ export default function ActivictyDetails({ activity, cancelSelectActivity, openF
                     <span>{activity.date}</span>
                 </Card.Meta>
                 <Card.Description>
-                    {activity.description}
+                    <div>{activity.description} </div> <br/>
+                    <div> <b>{activity.city} / {activity.venue}</b></div>
                 </Card.Description>
             </Card.Content>
             <Card.Content extra>
