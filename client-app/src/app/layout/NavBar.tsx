@@ -5,11 +5,11 @@ export default function NavBar() {
     return (
         <Menu inverted fixed='top'>
             <Container>
-                <Menu.Item header>
-                    <img src='/assets/logo.png' alt="logo" />
-                   
+                <Menu.Item header style={{marginLeft: '-6vw'}}>
+                    <img src='/assets/logo.png' alt="logo" style={{marginRight: '1vw'}}/>
+                    Sunflower
                 </Menu.Item>
-                <Menu.Item name='Sunflower' />
+                <Menu.Item name='Activities' />
                 <Menu.Item>
                     <Button positive content='Crete Activity' />
                 </Menu.Item>
