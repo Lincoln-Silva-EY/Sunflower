@@ -20,7 +20,7 @@ export default function ActivityList({ activities }: Props) {
                                 <div>{activity.city}, {activity.venue}</div>
                             </Item.Description>
                             <Item.Extra>
-                                <Button floated='right' content='View' color='blue' />
+                                <Button floated='right' content='View' color='yellow' />
                                 <Label basic content={activity.category} />
                             </Item.Extra>
                         </Item.Content>
