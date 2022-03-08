@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './src/app/layout/style.css';
 import App from './src/app/layout/App';
 import 'semantic-ui-css/semantic.min.css';
+import { store, StoreContext } from './src/app/stores/store';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <StoreContext.Provider value={store}>
     <App />
-  </React.StrictMode>,
+  </StoreContext.Provider>,
   document.getElementById('root')
 );
