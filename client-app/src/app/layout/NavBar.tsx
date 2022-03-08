@@ -7,7 +7,7 @@ export default function NavBar() {
     return (
         <Menu inverted fixed='top'>
             <Container>
-                <Menu.Item as={NavLink} to='/' exact header style={{marginLeft: '-10vw'}}>
+                <Menu.Item as={NavLink} to='/' exact header>
                     <img src='/assets/icon.png' alt="logo" style={{marginRight: '1vw'}}/>
                     Sunflower
                 </Menu.Item>
