@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './src/app/layout/style.css';
+import 'react-calendar/dist/Calendar.css'
 import App from './src/app/layout/App';
 import 'semantic-ui-css/semantic.min.css';
 import { store, StoreContext } from './src/app/stores/store';
