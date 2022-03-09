@@ -43,7 +43,8 @@ export default observer(function ActivityForm() {
     }
 
     return (
-        <Segment clearing>
+        <div style={{marginTop:"10vh"}}>
+        <Segment clearing> 
             <Form onSubmit={handleSubmit} autoComplete='off'>
                 <Form.Input placeholder='Title' value={activity.title} name='title' onChange={handleInputChange} />
                 <Form.TextArea placeholder='Description' value={activity.description} name='description' onChange={handleInputChange} />
@@ -55,6 +56,7 @@ export default observer(function ActivityForm() {
                 <Button as={Link} to='/activities' floated='right' type='button' content='Cancel' />
             </Form>
         </Segment>
+        </div>
     )
 })
 
