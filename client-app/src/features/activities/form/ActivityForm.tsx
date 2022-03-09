@@ -11,6 +11,7 @@ import MySelectInput from "../../../app/common/form/MySelectInput";
 import { categoryOptions } from "../../../app/common/options/categoryOptions";
 import MyDateInput from "../../../app/common/form/MyDateInput";
 import { Activity } from "../../../app/models/activity";
+import { v4 as uuid } from 'uuid';
 
 export default observer(function ActivityForm() {
     const history = useHistory();
@@ -88,11 +89,4 @@ export default observer(function ActivityForm() {
         </div>
     )
 })
-
-function loadActivity(id: string) {
-    throw new Error("Function not implemented.");
-}
-function uuid() {
-    throw new Error("Function not implemented.");
-}
 
