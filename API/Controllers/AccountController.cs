@@ -2,6 +2,7 @@ using System.Security.Claims;
 using API.DTOs;
 using API.Services;
 using Domain;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -78,6 +79,22 @@ namespace API.Controllers
             var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
 
             return CreateUserObject(user);
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult<UserDto>> DeleteUser()
+        {
+            var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
+            if (user != null)
+            {
+                await _userManager.DeleteAsync(user);
+            }
+            else
+            {
+                return BadRequest("Problem deleting user..");
+            }
+
+            return null;
         }
 
         private UserDto CreateUserObject(AppUser user)
