@@ -2,7 +2,6 @@ using System.Security.Claims;
 using API.DTOs;
 using API.Services;
 using Domain;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -48,11 +47,13 @@ namespace API.Controllers
         {
             if (await _userManager.Users.AnyAsync(x => x.Email == registerDto.Email))
             {
-                return BadRequest("This email is already in use..");
+                ModelState.AddModelError("email", "This email is already in use");
+                return ValidationProblem();
             }
             if (await _userManager.Users.AnyAsync(x => x.UserName == registerDto.Username))
             {
-                return BadRequest("This username is already in use..");
+                ModelState.AddModelError("email", "This username is already in use..");
+                return ValidationProblem();
             }
 
             var user = new AppUser

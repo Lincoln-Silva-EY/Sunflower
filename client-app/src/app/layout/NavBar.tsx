@@ -24,7 +24,7 @@ export default observer(function NavBar() {
                     <Dropdown pointing='top left' text={user?.displayName} style={{fontWeight:'900'}}>
                         <Dropdown.Menu>
                             <Dropdown.Item as={Link} to={`/profile/${user?.username}`} text='My Profile' icon='user circle' />
-                            <Dropdown.Item onClick={logout} text='Logout' icon='frown outline' />
+                            <Dropdown.Item onClick={logout} text='Logout' icon='power off' />
                         </Dropdown.Menu>
                     </Dropdown>
                 </Menu.Item>

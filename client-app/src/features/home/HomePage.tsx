@@ -2,9 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Header, Segment, Image, Button } from 'semantic-ui-react'
 import { useStore } from '../../app/stores/store';
+import LoginForm from '../user/LoginForm';
+import RegisterForm from '../user/RegisterForm';
 
 export default function HomePage() {
-    const { userStore } = useStore();
+    const { userStore, modalStore } = useStore();
     return (
         <Segment inverted textAlign='center' vertical className='masthead'>
             <Container text>
@@ -21,10 +23,10 @@ export default function HomePage() {
                     </>
                 ) : (
                     <>
-                        <Button as={Link} to='/login' size='huge' style={{ width: '10vw', marginTop: "3vh" }} inverted>
+                        <Button onClick={() => modalStore.openModal(<LoginForm />)} size='huge' style={{ width: '10vw', marginTop: "3vh" }} inverted>
                             Login
                         </Button>
-                        <Button size='huge' style={{ width: '10vw' }} inverted>
+                        <Button onClick={() => modalStore.openModal(<RegisterForm />)} size='huge' style={{ width: '10vw' }} inverted>
                             Register
                         </Button>
                     </>
