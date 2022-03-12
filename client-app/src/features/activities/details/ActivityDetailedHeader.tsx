@@ -4,6 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Header, Item, Segment, Image } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
+import { useStore } from "../../../app/stores/store";
 
 const activityImageStyle = {
     filter: 'brightness(30%)'
@@ -23,6 +24,7 @@ interface Props {
 }
 
 export default observer(function ActivityDetailedHeader({ activity }: Props) {
+    const {activityStore: {updateAttendence, loading}} = useStore();
     return (
         <Segment.Group>
             <Segment basic attached='top' style={{ padding: '0' }}>
@@ -36,9 +38,14 @@ export default observer(function ActivityDetailedHeader({ activity }: Props) {
                                     content={activity.title}
                                     style={{ color: 'white' }}
                                 />
-                                <p>{format (activity.date!, 'dd / MMMM / yyyy')}</p>
+                                <p>{format(activity.date!, 'dd / MMMM / yyyy')}</p>
                                 <p>
-                                    Hosted by <strong>user</strong>
+                                    Hosted by 
+                                    <strong>
+                                        <Link
+                                            to={`profiles/${activity.host?.username}`}> {' ' + activity.host?.displayName }
+                                        </Link>
+                                    </strong>
                                 </p>
                             </Item.Content>
                         </Item>
@@ -46,12 +53,16 @@ export default observer(function ActivityDetailedHeader({ activity }: Props) {
                 </Segment>
             </Segment>
             <Segment clearing attached='bottom'>
-                <Button color='teal'>Join Activity</Button>
-                <Button>Cancel attendance</Button>
-                <Button as={Link} to={`/manage/${activity.id}`} color='yellow' floated='right'>
-                    Manage Event
-                </Button>
+                {activity.isHost ? (
+                    <Button as={Link} to={`/manage/${activity.id}`} color='yellow' floated='right'>
+                        Manage Event
+                    </Button>
+                ) : activity.isGoing ? (
+                    <Button loading={loading} onClick={updateAttendence}>Cancel attendance</Button>
+                ) : (
+                    <Button loading={loading} onClick={updateAttendence} color='teal'>Join Activity</Button>
+                )}
             </Segment>
-        </Segment.Group>
+        </Segment.Group >
     )
 })

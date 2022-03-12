@@ -1,26 +1,43 @@
 import { format } from "date-fns";
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Icon, Item, Segment } from "semantic-ui-react";
+import { Button, Icon, Item, Label, Segment } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
+import { Profile } from "../../../app/models/profile";
+import ActivityListItemAttendee from "./ActivityListItemAttendee";
 
 interface Props {
     activity: Activity
+    attendees: Profile[];
 }
 
-export default function ActivityListItem({ activity }: Props) {
+export default function ActivityListItem({ activity, attendees }: Props) {
 
     return (
         <Segment.Group>
             <Segment>
                 <Item.Group>
-                    <Item>  
+                    <Item>
                         <Item.Image size="tiny" circular src='/assets/user.png' />
                         <Item.Content>
-                            <Item.Header as={Link} to={`/activities/${activity.id}`} style={{marginTop:'2.5vh'}}>
+                            {activity.isHost && (
+                                <Item.Description style={{ position: 'relative' }}>
+                                    <Label color="yellow" ribbon='right' style={{ position: 'absolute' }}>
+                                        You are hosting
+                                    </Label>
+                                </Item.Description>
+                            )}
+                            {!activity.isHost && activity.isGoing && (
+                                <Item.Description style={{ position: 'relative' }}>
+                                    <Label color="green" ribbon='right' style={{ position: 'absolute' }}>
+                                        You are going
+                                    </Label>
+                                </Item.Description>
+                            )}
+                            <Item.Header as={Link} to={`/activities/${activity.id}`} style={{ marginTop: '2.5vh' }}>
                                 {activity.title}
                             </Item.Header>
-                            <Item.Description>Hosted by user</Item.Description>
+                            <Item.Description>Hosted by {activity.host?.displayName}</Item.Description>
                         </Item.Content>
                     </Item>
                 </Item.Group>
@@ -28,12 +45,12 @@ export default function ActivityListItem({ activity }: Props) {
             <Segment>
                 <span>
                     <Icon name='calendar outline' /> {format(activity.date!, 'dd / MMMM / yyyy ')}
-                    <Icon name='clock outline' style={{marginLeft:'1vw'}}/> {format(activity.date!, 'h:mm aa')}
-                    <Icon name="map marker alternate" style={{marginLeft:'1vw'}} /> {activity.venue}
+                    <Icon name='clock outline' style={{ marginLeft: '1vw' }} /> {format(activity.date!, 'h:mm aa')}
+                    <Icon name="map marker alternate" style={{ marginLeft: '1vw' }} /> {activity.venue}
                 </span>
             </Segment>
             <Segment secondary>
-                Attendees
+                <ActivityListItemAttendee attendees={activity.attendees!} />
             </Segment>
             <Segment clearing>
                 <span>{activity.description}</span>
