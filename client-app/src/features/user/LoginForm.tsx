@@ -4,10 +4,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Header, Label, Image, Segment, SegmentGroup, ButtonGroup } from "semantic-ui-react";
 import MyTextInput from "../../app/common/form/MyTextInput";
+import modalStore from "../../app/stores/modalStore";
 import { useStore } from "../../app/stores/store";
+import RegisterForm from "./RegisterForm";
 
 export default observer(function LoginForm() {
-    const { userStore } = useStore();
+    const { userStore, modalStore } = useStore();
     return (
         <Formik
             initialValues={{ email: '', password: '', error: null }}
@@ -41,7 +43,7 @@ export default observer(function LoginForm() {
                             size="large" fluid />
                         <Header style={{ marginTop: '3.5vh' }} as='h5' onClick textAlign="center" content='Forget your Password'
                             color="yellow" />
-                        <Button style={{ marginTop: '2vh', marginBottom: '2vh', width: '12vw' }} content='Register' size="large" />
+                        <Button onClick={() => modalStore.openModal(<RegisterForm />)} style={{ marginTop: '2vh', marginBottom: '2vh', width: '12vw' }} content='Register' size="large" />
                     </Header>
                 </Form>
             )}
