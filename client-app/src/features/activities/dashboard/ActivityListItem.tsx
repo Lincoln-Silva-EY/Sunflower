@@ -21,7 +21,7 @@ export default function ActivityListItem({ activity, attendees }: Props) {
                 }
                 <Item.Group>
                     <Item>
-                        <Item.Image size="tiny" circular src='/assets/user.png' />
+                        <Item.Image size="tiny" circular src={activity.host?.image || '/assets/user.png'} />
                         <Item.Content>
                             {activity.isHost && (
                                 <Item.Description style={{ position: 'relative' }}>
@@ -40,7 +40,7 @@ export default function ActivityListItem({ activity, attendees }: Props) {
                             <Item.Header as={Link} to={`/activities/${activity.id}`} style={{ marginTop: '2.5vh' }}>
                                 {activity.title}
                             </Item.Header>
-                            <Item.Description>Hosted by {activity.host?.displayName}</Item.Description>
+                            <Item.Description>Hosted by <Link to={`/profile/${activity.host?.displayName}`}> {activity.host?.displayName}</Link></Item.Description>
                         </Item.Content>
                     </Item>
                 </Item.Group>
