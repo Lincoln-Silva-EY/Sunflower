@@ -52,7 +52,7 @@ export default function ActivityListItem({ activity, attendees }: Props) {
                     <Icon name="map marker alternate" style={{ marginLeft: '1vw' }} /> {activity.venue}
                 </span>
             </Segment>
-            <Segment secondary>
+            <Segment secondary id='attendee-back'>
                 <ActivityListItemAttendee attendees={activity.attendees!} />
             </Segment>
             <Segment clearing>

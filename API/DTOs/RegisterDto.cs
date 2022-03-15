@@ -18,6 +18,6 @@ namespace API.DTOs
         [Required]
         public string Username { get; set; }
 
-        public string? Bio { get; set; }
+        public string Bio { get; set; }
     }
 }

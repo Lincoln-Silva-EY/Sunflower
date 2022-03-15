@@ -1,8 +1,9 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
 import { Link } from "react-router-dom";
-import { Segment, List, Item, Label, Image } from "semantic-ui-react";
+import { Segment, List, Item, Label, Image, Popup } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
+import ProfileCard from "../../profiles/ProfileCard";
 
 interface Props {
     activity: Activity;
@@ -25,24 +26,32 @@ export default observer(function ActivityDetailedSidebar({ activity: { attendees
             <Segment attached>
                 <List relaxed divided>
                     {attendees.map(attendee => (
-                        <Item style={{ position: 'relative' }} key={attendee.username}>
-                            {attendee.username === host?.username &&
-                                <Label
-                                    style={{ position: 'absolute' }}
-                                    color='yellow'
-                                    ribbon='right'
-                                >
-                                    Host
-                                </Label>
-                            }
-                            <Image size='tiny' src={attendee.image || '/assets/user.png'} />
-                            <Item.Content verticalAlign='middle'>
-                                <Item.Header as='h3'>
-                                    <Link to={`/profile/${attendee.username}`}>{attendee.displayName}</Link>
-                                </Item.Header>
-                                <Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>
-                            </Item.Content>
-                        </Item>
+                        <Popup
+                            hoverable
+                            key={attendee.username}
+                            trigger={
+                                <Item style={{ position: 'relative' }} key={attendee.username}>
+                                    {attendee.username === host?.username &&
+                                        <Label
+                                            style={{ position: 'absolute' }}
+                                            color='yellow'
+                                            ribbon='right'
+                                        >
+                                            Host
+                                        </Label>
+                                    }
+                                    <Image size='tiny' src={attendee.image || '/assets/user.png'} />
+                                    <Item.Content verticalAlign='middle'>
+                                        <Item.Header as='h3'>
+                                            <Link to={`/profile/${attendee.username}`}>{attendee.displayName}</Link>
+                                        </Item.Header>
+                                        <Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>
+                                    </Item.Content>
+                                </Item>}>
+                            <Popup.Content>
+                                <ProfileCard profile={attendee} />
+                            </Popup.Content>
+                        </Popup>
                     ))}
                 </List>
             </Segment>

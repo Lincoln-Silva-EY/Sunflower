@@ -43,7 +43,7 @@ export default class UserStore {
         }
     }
 
-    regiter = async (creds: UserFormValues) => {
+    register = async (creds: UserFormValues) => {
         try {
             const user = await agent.Account.register(creds);
             store.commonStore.setToken(user.token);
@@ -53,5 +53,14 @@ export default class UserStore {
         } catch (error) {
             throw error;
         }
+    }
+
+    setImage = (image: string) => {
+        if (this.user) this.user.image = image;
+    }
+
+    setDisplayName = (name: string) => {
+        if (this.user) this.user.displayName = name;
+
     }
 }
