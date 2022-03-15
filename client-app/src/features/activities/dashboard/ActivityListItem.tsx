@@ -40,7 +40,7 @@ export default function ActivityListItem({ activity, attendees }: Props) {
                             <Item.Header as={Link} to={`/activities/${activity.id}`} style={{ marginTop: '2.5vh' }}>
                                 {activity.title}
                             </Item.Header>
-                            <Item.Description>Hosted by <Link to={`/profile/${activity.host?.displayName}`}> {activity.host?.displayName}</Link></Item.Description>
+                            <Item.Description>Hosted by <Link to={`/profile/${activity.host?.username}`}> {activity.host?.username}</Link></Item.Description>
                         </Item.Content>
                     </Item>
                 </Item.Group>

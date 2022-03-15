@@ -46,7 +46,7 @@ export default observer(function ActivityDetailedHeader({ activity }: Props) {
                                 <p>
                                     Hosted by
                                     <strong>
-                                        <Link to={`/profile/${activity.host?.displayName}`}>
+                                        <Link to={`/profile/${activity.host?.username}`}>
                                             {' ' + activity.host?.displayName}
                                         </Link>
                                     </strong>
