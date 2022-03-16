@@ -28,6 +28,7 @@ export default observer(function ActivityDetailedSidebar({ activity: { attendees
                     {attendees.map(attendee => (
                         <Popup
                             hoverable
+                            position="left center"
                             key={attendee.username}
                             trigger={
                                 <Item style={{ position: 'relative' }} key={attendee.username}>
@@ -45,7 +46,8 @@ export default observer(function ActivityDetailedSidebar({ activity: { attendees
                                         <Item.Header as='h3'>
                                             <Link to={`/profile/${attendee.username}`}>{attendee.displayName}</Link>
                                         </Item.Header>
-                                        <Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>
+                                        {attendee.following &&
+                                        <Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>}
                                     </Item.Content>
                                 </Item>}>
                             <Popup.Content>

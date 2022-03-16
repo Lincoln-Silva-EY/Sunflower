@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Icon, Image } from "semantic-ui-react";
 import { Profile } from "../../app/models/profile";
+import FollowButtom from "./FollowButtom";
 
 interface Props {
     profile: Profile;
@@ -16,7 +17,7 @@ function truncate(str: string | undefined) {
 
 export default observer(function ProfileCard({ profile }: Props) {
     return (
-        <Card as={Link} to={`/profiles/${profile.displayName}`} style={{ width: '10vw' }}>
+        <Card as={Link} to={`/profile/${profile.username}`} style={{ width: '10vw' }} >
             <Image src={profile.image || 'assets/user.png'} />
             <Card.Content>
                 <Card.Header>{profile.displayName}</Card.Header>
@@ -24,8 +25,9 @@ export default observer(function ProfileCard({ profile }: Props) {
             </Card.Content>
             <Card.Content extra>
                 <Icon name="user" />
-                20 followers
+                {profile.followersCount} followers
             </Card.Content>
+            <FollowButtom profile={profile} />
         </Card>
     )
 })
