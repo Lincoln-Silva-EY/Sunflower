@@ -17,6 +17,7 @@ import LoadingComponent from './LoadingComponent';
 import ModalContainer from '../common/modals/ModalContainer';
 import ProfilePage from '../../features/profiles/ProfilePage';
 import PrivateRoute from './PrivateRoute';
+import 'dotenv'
 
 function App() {
   const location = useLocation();
@@ -48,7 +49,7 @@ function App() {
                 <Route path="/activities/:id" component={ActivictyDetails} />
                 <Route key={location.key} path={["/createActivity", "/manage/:id"]} component={ActivityForm} />
                 <Route path='/profile/:username' component={ProfilePage} />
-                <Route path={'/errors'} component={TestErrors} /> 
+                <Route path={'/errors'} component={TestErrors} />
                 <Route path={'/server-error'} component={ServerError} />
                 <Route component={NotFound} />
               </Switch>

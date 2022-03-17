@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "types": [
+      "vite/client"
+    ],
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": [
@@ -18,11 +21,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "strictNullChecks": false,
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
-, "main.tsx"  ],
+    "src",
+    "main.tsx"
+  ],
   "references": [
     {
       "path": "tsconfig.node.json"

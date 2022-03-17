@@ -9,7 +9,7 @@ import { store } from "./store";
 
 export default class ActivityStore {
     activityRegistry = new Map<string, Activity>();
-    selectedActivity: Activity | undefined = undefined;
+    selectedActivity: Activity | any;
     editMode = false;
     loading = false;
     loadingInitial = false;
