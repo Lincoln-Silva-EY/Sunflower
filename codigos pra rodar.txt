@@ -39,3 +39,5 @@ npm install @microsoft/signalr
 npm install react-infinite-scroller
 
 npm install @types/react-infinite-scroller
+
+npm install dotenv
