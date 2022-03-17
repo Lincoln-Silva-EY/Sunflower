@@ -41,3 +41,5 @@ npm install react-infinite-scroller
 npm install @types/react-infinite-scroller
 
 npm install dotenv
+
+dotnet ef migrations add PGInitial -p Persistence -s API / migration pro postgres
