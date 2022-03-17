@@ -6,9 +6,7 @@ import MyTextInput from "../../app/common/form/MyTextInput";
 import { useStore } from "../../app/stores/store";
 import * as Yup from 'yup';
 import ValidationErrors from "../errors/ValidationErrors";
-import modalStore from "../../app/stores/modalStore";
 import LoginForm from "./LoginForm";
-import { Link } from "react-router-dom";
 
 export default observer(function RegisterForm() {
     const { userStore, modalStore } = useStore();

@@ -1,12 +1,11 @@
 import { ErrorMessage, Form, Formik } from "formik";
 import { observer } from "mobx-react-lite";
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button, Header, Label, Image, Segment, SegmentGroup, ButtonGroup } from "semantic-ui-react";
+import { Button, Header, Label, Image } from "semantic-ui-react";
 import MyTextInput from "../../app/common/form/MyTextInput";
-import modalStore from "../../app/stores/modalStore";
 import { useStore } from "../../app/stores/store";
 import RegisterForm from "./RegisterForm";
+import * as Yup from 'yup';
 
 export default observer(function LoginForm() {
     const { userStore, modalStore } = useStore();
@@ -15,8 +14,12 @@ export default observer(function LoginForm() {
             initialValues={{ email: '', password: '', error: null }}
             onSubmit={(values, { setErrors }) => userStore.login(values).catch(error =>
                 setErrors({ error: 'Invalid email or password' }))}
+            validationSchema={Yup.object({
+                email: Yup.string().required().email(),
+                password: Yup.string().required(),
+            })}
         >
-            {({ handleSubmit, isSubmitting, errors }) => (
+            {({ handleSubmit, isSubmitting, errors, isValid, dirty }) => (
 
 
                 <Form className="ui form" onSubmit={handleSubmit} autoComplete='off'>
@@ -43,13 +46,14 @@ export default observer(function LoginForm() {
                             style={{ marginTop: '3vh' }}
                             loading={isSubmitting}
                             positive
+                            disabled={!isValid || !dirty || isSubmitting}
                             content='Login'
                             type="submit"
                             color="yellow"
                             size="large"
                             fluid />
 
-                        <Header style={{ marginTop: '3.5vh', cursor: 'pointer'}}
+                        <Header style={{ marginTop: '3.5vh', cursor: 'pointer' }}
                             as='h5'
                             textAlign="center"
                             content='Forget your Password'
@@ -64,6 +68,6 @@ export default observer(function LoginForm() {
                     </Header>
                 </Form>
             )}
-        </Formik>
+        </ Formik>
     )
 })
