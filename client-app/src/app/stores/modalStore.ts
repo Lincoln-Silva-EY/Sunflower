@@ -8,7 +8,7 @@ interface Modal {
 export default class ModalStore {
     modal = {
         open: false,
-        body: null
+        body: null,
     }
     
     constructor() {

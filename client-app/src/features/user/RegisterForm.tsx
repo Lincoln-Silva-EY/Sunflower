@@ -1,14 +1,17 @@
 import { ErrorMessage, Form, Formik } from "formik";
 import { observer } from "mobx-react-lite";
 import React from "react";
-import { Button, Header, Image} from "semantic-ui-react";
+import { Button, Header, Image } from "semantic-ui-react";
 import MyTextInput from "../../app/common/form/MyTextInput";
 import { useStore } from "../../app/stores/store";
 import * as Yup from 'yup';
 import ValidationErrors from "../errors/ValidationErrors";
+import modalStore from "../../app/stores/modalStore";
+import LoginForm from "./LoginForm";
+import { Link } from "react-router-dom";
 
 export default observer(function RegisterForm() {
-    const { userStore } = useStore();
+    const { userStore, modalStore } = useStore();
     return (
         <Formik
             initialValues={{ displayName: '', username: '', email: '', password: '', error: null }}
@@ -54,10 +57,11 @@ export default observer(function RegisterForm() {
                             fluid
                         />
                         <Header
-                            style={{ marginTop: '3.5vh', marginBotom: '4vh' }}
+                            style={{ marginTop: '3.5vh', marginBotom: '4vh', cursor: 'pointer' }}
                             as='h5'
-                            textAlign="center"
                             content='Already have an Account'
+                            onClick={() => modalStore.openModal(<LoginForm />)}
+                            textAlign="center"
                             color="yellow" />
                     </Header>
                 </Form>

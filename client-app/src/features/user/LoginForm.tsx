@@ -39,11 +39,28 @@ export default observer(function LoginForm() {
                         />
                     </Header>
                     <Header align='center'>
-                        <Button style={{ marginTop: '3vh' }} loading={isSubmitting} positive content='Login' type="submit" color="yellow"
-                            size="large" fluid />
-                        <Header style={{ marginTop: '3.5vh' }} as='h5' onClick textAlign="center" content='Forget your Password'
-                            color="yellow" />
-                        <Button onClick={() => modalStore.openModal(<RegisterForm />)} style={{ marginTop: '2vh', marginBottom: '2vh', width: '12vw' }} content='Register' size="large" />
+                        <Button
+                            style={{ marginTop: '3vh' }}
+                            loading={isSubmitting}
+                            positive
+                            content='Login'
+                            type="submit"
+                            color="yellow"
+                            size="large"
+                            fluid />
+
+                        <Header style={{ marginTop: '3.5vh', cursor: 'pointer'}}
+                            as='h5'
+                            textAlign="center"
+                            content='Forget your Password'
+                            color="yellow"
+                        />
+
+                        <Button
+                            onClick={() => modalStore.openModal(<RegisterForm />)}
+                            style={{ marginTop: '2vh', marginBottom: '2vh', width: '12vw' }}
+                            content='Register'
+                            size="large" />
                     </Header>
                 </Form>
             )}
